@@ -53,7 +53,7 @@ public class CS50BlueDevice implements IDataCollector {
     }
 
     @Override
-    public void print(String hd1, String hd2) {
+    public void print(String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
 
         posApiHelper.PrintInit(2, 24, 24, 0);
         posApiHelper.PrintSetGray(5);

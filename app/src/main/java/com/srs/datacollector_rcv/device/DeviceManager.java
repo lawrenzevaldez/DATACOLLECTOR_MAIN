@@ -20,16 +20,6 @@ public class DeviceManager {
             return new CilicoDevice();
         }
 
-//        try {
-//            Class.forName("com.ctk.sdk.PosApiHelper");
-//            return new CS50BlackDevice();
-//        } catch (Exception ignored) {}
-//
-//        try {
-//            Class.forName("vpos.apipackage.PosApiHelper");
-//            return new CS50BlueDevice();
-//        } catch (Exception ignored) {}
-
         throw new RuntimeException("Unsupported device");
     }
 }
