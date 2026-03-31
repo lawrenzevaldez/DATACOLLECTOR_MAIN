@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scanner</title>
+</head>
+<body>
+
+<input id="item_barcode" placeholder="Scan result will appear here" />
+
+<br><br>
+
+<button onclick="startScan()">Start Scan</button>
+<button onclick="printTest()">Print Test</button>
+
+<script>
+function startScan() {
+    Android.scan();
+}
+
+function printTest() {
+    Android.print("HEADER 1\n", "HEADER 2\n");
+}
+</script>
+
+</body>
+</html>

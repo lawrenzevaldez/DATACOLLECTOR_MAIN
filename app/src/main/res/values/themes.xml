@@ -1,0 +1,11 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.DataCollector_RCV" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/purple_700</item>
+    </style>
+</resources>
