@@ -7,6 +7,9 @@ import android.webkit.WebView;
 import com.srs.datacollector_rcv.device.DeviceManager;
 import com.srs.datacollector_rcv.device.IDataCollector;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class WebAppBridge {
     private Activity activity;
     private IDataCollector device;
@@ -31,7 +34,61 @@ public class WebAppBridge {
     }
 
     @JavascriptInterface
-    public void print(String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
-        device.print(hd1, hd2, hd3, hd4, hd5, hd6, hd7, hd8, hd9, hd10, hd11, hd12, hd13, hd14, hd15, nl, hd16);
+    public void print(String json) {
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(json);
+
+        device.print(obj.optString("program"),
+                obj.optString("header1"),
+                obj.optString("header2"),
+                obj.optString("header3"),
+                obj.optString("header4"),
+                obj.optString("header5"),
+                obj.optString("header6"),
+                obj.optString("header7"),
+                obj.optString("header8"),
+                obj.optString("header9"),
+                obj.optString("header10"),
+                obj.optString("header11"),
+                obj.optString("header12"),
+                obj.optString("header13"),
+                obj.optString("header14"),
+                obj.optString("header15"),
+                obj.optString("nl"),
+                obj.optString("header16"));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @JavascriptInterface
+    public void reprint(String json) {
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(json);
+
+            device.reprint(obj.optString("program"),
+                    obj.optString("header1"),
+                    obj.optString("header2"),
+                    obj.optString("header3"),
+                    obj.optString("header4"),
+                    obj.optString("header5"),
+                    obj.optString("header6"),
+                    obj.optString("header7"),
+                    obj.optString("header8"),
+                    obj.optString("header9"),
+                    obj.optString("header10"),
+                    obj.optString("header11"),
+                    obj.optString("header12"),
+                    obj.optString("header13"),
+                    obj.optString("header14"),
+                    obj.optString("header15"),
+                    obj.optString("nl"),
+                    obj.optString("header16"),
+                    obj.optString("header17"));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

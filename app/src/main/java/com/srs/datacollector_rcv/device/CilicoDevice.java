@@ -2,6 +2,7 @@ package com.srs.datacollector_rcv.device;
 
 import android.app.Activity;
 import android.content.*;
+import android.util.Log;
 import android.webkit.WebView;
 import com.srs.datacollector_rcv.R;
 import Printer.PrintHelper;
@@ -33,7 +34,7 @@ public class CilicoDevice implements IDataCollector {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String data = intent.getStringExtra("BARCODE");
-                webHelper.sendScanResult(data);
+                webHelper.sendScanResult(data, "cilico");
             }
         }, filter);
     }
@@ -57,8 +58,91 @@ public class CilicoDevice implements IDataCollector {
     }
 
     @Override
-    public void print(String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
-        printMultiline(hd1);
-        printMultiline(hd2);
+    public void print(String program, String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
+        if(program.equals("srsbo")) {
+            // ==============================
+            // HEADERS (FROM JS)
+            // ==============================
+            printMultiline(hd1);   // RETURNS and DISPOSAL <branch>
+            printMultiline(hd2);   // Return to Supplier Slip No XXXX
+            printMultiline(hd3);   // Supplier
+            printMultiline(hd4);   // Date
+            printMultiline(hd5);   // U.COST
+            printMultiline(hd6);   // Product + QTY header
+
+            // ==============================
+            // ITEMS (ALREADY LOOPED IN JS)
+            // ==============================
+            printMultiline(hd7);   // Items list (product / qty / cost / uom)
+
+            // ==============================
+            // DIVIDER + TOTALS
+            // ==============================
+            printMultiline(hd8);   // dashed line
+            printMultiline(hd9);   // TOTAL QTY
+            printMultiline(hd10);  // TOTAL AMOUNT + dashed line
+
+            // ==============================
+            // SIGNATURES
+            // ==============================
+            printMultiline(hd11);  // Prepared by
+            printMultiline(hd12);  // Checked by
+            printMultiline(hd13);  // Received by
+            printMultiline(hd14);  // signature line
+
+            // ==============================
+            // COPIES
+            // ==============================
+            printMultiline(hd15);  // Supplier Copy
+
+            // ==============================
+            // FEED PAPER
+            // ==============================
+            printMultiline("\n");
+        }
+    }
+
+    public void reprint(String program, String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16, String hd17) {
+        if(program.equals("srsbo")) {
+            // ==============================
+            // HEADERS (FROM JS)
+            // ==============================
+            printMultiline(hd1);   // RETURNS and DISPOSAL <branch>
+            printMultiline(hd2);   // Return to Supplier Slip No XXXX
+            printMultiline(hd3);   // Supplier
+            printMultiline(hd4);   // Date
+            printMultiline(hd5);   // U.COST
+            printMultiline(hd6);   // Product + QTY header
+
+            // ==============================
+            // ITEMS (ALREADY LOOPED IN JS)
+            // ==============================
+            printMultiline(hd7);   // Items list (product / qty / cost / uom)
+
+            // ==============================
+            // DIVIDER + TOTALS
+            // ==============================
+            printMultiline(hd8);   // dashed line
+            printMultiline(hd9);   // TOTAL QTY
+            printMultiline(hd10);  // TOTAL AMOUNT + dashed line
+
+            // ==============================
+            // SIGNATURES
+            // ==============================
+            printMultiline(hd11);  // Prepared by
+            printMultiline(hd12);  // Checked by
+            printMultiline(hd13);  // Received by
+            printMultiline(hd14);  // signature line
+
+            // ==============================
+            // COPIES
+            // ==============================
+            printMultiline(hd17);  // Supplier Copy
+
+            // ==============================
+            // FEED PAPER
+            // ==============================
+            printMultiline("\n");
+        }
     }
 }

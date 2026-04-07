@@ -2,6 +2,8 @@ package com.srs.datacollector_rcv;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +15,8 @@ import android.webkit.WebViewClient;
 import com.srs.datacollector_rcv.web.WebAppBridge;
 
 public class MainActivity extends Activity {
+    private static final String PREFS_NAME = "AppPrefs";
+    private static final String KEY_URL = "saved_url";
 
     SwipeRefreshLayout mySwipeRefreshLayout;
     WebView webView;
@@ -71,14 +75,15 @@ public class MainActivity extends Activity {
             }
         });
 
-        String url = "file:///android_asset/index.html";
-        webView.loadUrl(url);
-
         WebAppBridge bridge = new WebAppBridge(this, webView);
 
         webView.addJavascriptInterface(bridge, "Android");
 
         bridge.initDevice(webView);
+
+        SharedPreferences sp = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String url = sp.getString(KEY_URL, "http://192.168.0.62:8080");
+        webView.loadUrl(url);
 
         mySwipeRefreshLayout.setOnRefreshListener(
             new SwipeRefreshLayout.OnRefreshListener() {

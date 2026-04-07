@@ -36,7 +36,7 @@ public class CS50BlackDevice implements IDataCollector {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String data = intent.getStringExtra("EXTRA_SCAN_DATA");
-                webHelper.sendScanResult(data);
+                webHelper.sendScanResult(data, "cs50black");
             }
         };
 
@@ -54,49 +54,64 @@ public class CS50BlackDevice implements IDataCollector {
     }
 
     @Override
-    public void print(String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
-        try {
-            posApiHelper.printerOpt.PrnInit();
-            posApiHelper.printerOpt.PrnSetGray(5);
-            posApiHelper.printerOpt.PrnSetFont((byte)16,(byte)16,(byte)0);
+    public void print(String program, String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16) {
+        if(program.equals("srsbo")) {
+            try {
+                posApiHelper.printerOpt.PrnInit();
+                posApiHelper.printerOpt.PrnSetGray(5);
+                posApiHelper.printerOpt.PrnSetFont((byte)16,(byte)16,(byte)0);
 
-            posApiHelper.printerOpt.PrnStr(hd1);
-            posApiHelper.printerOpt.PrnStr(hd2);
-            posApiHelper.printerOpt.PrnStr(hd3);
-            posApiHelper.printerOpt.PrnStr(hd4);
-            posApiHelper.printerOpt.PrnStr(hd5);
-            posApiHelper.printerOpt.PrnStr(hd6);
-            posApiHelper.printerOpt.PrnStr(hd7);
-            posApiHelper.printerOpt.PrnStr(hd8);
-            posApiHelper.printerOpt.PrnStr(hd9);
-            posApiHelper.printerOpt.PrnStr(hd10);
-            posApiHelper.printerOpt.PrnStr(hd11);
-            posApiHelper.printerOpt.PrnStr(hd12);
-            posApiHelper.printerOpt.PrnStr(hd13);
-            posApiHelper.printerOpt.PrnStr(hd14);
-            posApiHelper.printerOpt.PrnStr(hd15);
-            //posApiHelper.PrintStr(hd8);
-            // posApiHelper.PrintStr(nl);
+                posApiHelper.printerOpt.PrnStr(hd1);
+                posApiHelper.printerOpt.PrnStr(hd2);
+                posApiHelper.printerOpt.PrnStr(hd3);
+                posApiHelper.printerOpt.PrnStr(hd4);
+                posApiHelper.printerOpt.PrnStr(hd5);
+                posApiHelper.printerOpt.PrnStr(hd6);
+                posApiHelper.printerOpt.PrnStr(hd7);
+                posApiHelper.printerOpt.PrnStr(hd8);
+                posApiHelper.printerOpt.PrnStr(hd9);
+                posApiHelper.printerOpt.PrnStr(hd10);
+                posApiHelper.printerOpt.PrnStr(hd11);
+                posApiHelper.printerOpt.PrnStr(hd12);
+                posApiHelper.printerOpt.PrnStr(hd13);
+                posApiHelper.printerOpt.PrnStr(hd14);
+                posApiHelper.printerOpt.PrnStr(hd16);
 
-            posApiHelper.printerOpt.PrnStr(hd1);
-            posApiHelper.printerOpt.PrnStr(hd2);
-            posApiHelper.printerOpt.PrnStr(hd3);
-            posApiHelper.printerOpt.PrnStr(hd4);
-            posApiHelper.printerOpt.PrnStr(hd5);
-            posApiHelper.printerOpt.PrnStr(hd6);
-            posApiHelper.printerOpt.PrnStr(hd7);
-            posApiHelper.printerOpt.PrnStr(hd8);
-            posApiHelper.printerOpt.PrnStr(hd9);
-            posApiHelper.printerOpt.PrnStr(hd10);
-            posApiHelper.printerOpt.PrnStr(hd11);
-            posApiHelper.printerOpt.PrnStr(hd12);
-            posApiHelper.printerOpt.PrnStr(hd13);
-            posApiHelper.printerOpt.PrnStr(hd14);
-            posApiHelper.printerOpt.PrnStr(hd16);
+                posApiHelper.printerOpt.PrnStart();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-            posApiHelper.printerOpt.PrnStart();
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public void reprint(String program, String hd1, String hd2, String hd3, String hd4, String hd5, String hd6, String hd7, String hd8, String hd9, String hd10, String hd11, String hd12, String hd13, String hd14, String hd15, String nl, String hd16, String hd17) {
+        if(program.equals("srsbo")) {
+            try {
+                posApiHelper.printerOpt.PrnInit();
+                posApiHelper.printerOpt.PrnSetGray(5);
+                posApiHelper.printerOpt.PrnSetFont((byte)16,(byte)16,(byte)0);
+
+                posApiHelper.printerOpt.PrnStr(hd1);
+                posApiHelper.printerOpt.PrnStr(hd2);
+                posApiHelper.printerOpt.PrnStr(hd3);
+                posApiHelper.printerOpt.PrnStr(hd4);
+                posApiHelper.printerOpt.PrnStr(hd5);
+                posApiHelper.printerOpt.PrnStr(hd6);
+                posApiHelper.printerOpt.PrnStr(hd7);
+                posApiHelper.printerOpt.PrnStr(hd8);
+                posApiHelper.printerOpt.PrnStr(hd9);
+                posApiHelper.printerOpt.PrnStr(hd10);
+                posApiHelper.printerOpt.PrnStr(hd11);
+                posApiHelper.printerOpt.PrnStr(hd12);
+                posApiHelper.printerOpt.PrnStr(hd13);
+                posApiHelper.printerOpt.PrnStr(hd14);
+                posApiHelper.printerOpt.PrnStr(hd17);
+
+                posApiHelper.printerOpt.PrnStart();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -10,20 +10,27 @@ public class WebViewHelper {
         this.webView = webView;
     }
 
-    public void sendScanResult(String value) {
+    public void sendScanResult(String value, String device) {
         if (value == null) return;
 
-        webView.post(() ->
-                webView.evaluateJavascript(
-                        "(function(){" +
-                                "var el=document.getElementById('item_barcode');" +
-                                "if(!el) return;" +
-                                "el.value='" + value + "';" +
-                                "el.dispatchEvent(new Event('input',{bubbles:true}));" +
-                                "el.dispatchEvent(new KeyboardEvent('keyup',{key:'Enter',keyCode:13,which:13,bubbles:true}));" +
-                                "})();",
-                        null
-                )
-        );
+        if(device == "cilico") {
+            webView.post(() ->
+                    webView.evaluateJavascript(
+                            "(function(){" +
+                                    "var el=document.getElementById('item_barcode');" +
+                                    "if(!el) return;" +
+                                    "el.value='" + value + "';" +
+                                    "el.dispatchEvent(new Event('input',{bubbles:true}));" +
+                                    "el.dispatchEvent(new KeyboardEvent('keyup',{key:'Enter',keyCode:13,which:13,bubbles:true}));" +
+                                    "})();",
+                            null
+                    )
+            );
+        } else {
+            webView.evaluateJavascript(
+                    "javascript: (function(){ document.getElementById('item_barcode').value = '"+value+"'; document.getElementById('item_barcode').focus(); })();  ",
+                    null
+            );
+        }
     }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <!-- Save Button at Bottom -->
+    <Button
+        android:id="@+id/saveButton"
+        android:text="Edit URL"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:layout_alignParentBottom="true" />
+
+    <!-- URL Input Above Save Button -->
+    <EditText
+        android:id="@+id/urlEditText"
+        android:hint="Enter URL"
+        android:inputType="textUri"
+        android:padding="14dp"
+        android:background="@android:drawable/editbox_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/saveButton"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Load Button Centered -->
+    <Button
+        android:id="@+id/loadButton"
+        android:text="OPEN SRS BO"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:enabled="false"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp" />
+
+
+</RelativeLayout>
