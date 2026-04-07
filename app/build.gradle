@@ -10,8 +10,8 @@ android {
         applicationId "com.srs.datacollector_rcv"
         minSdk 24
         targetSdk 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +30,7 @@ android {
 
     buildFeatures {
         aidl true
+        buildConfig true
     }
 
     sourceSets {
@@ -38,6 +39,17 @@ android {
         }
     }
 
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == "release") {
+            variant.outputs.all {
+                outputFileName = "app-release.apk"
+            }
+        }
+    }
+
+    lint {
+        abortOnError false
+    }
 }
 
 dependencies {
