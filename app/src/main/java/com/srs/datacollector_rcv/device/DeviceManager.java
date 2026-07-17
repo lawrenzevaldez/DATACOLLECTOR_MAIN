@@ -12,9 +12,9 @@ public class DeviceManager {
 
         String deviceName = manufacturer+'-'+display;
 
-        if (deviceName.equals("ciontek-a52_v0.19_20220914g")) {
+        if (deviceName.contains("ciontek-a52_v0.19") || deviceName.contains("ciontek-a52_v0.17")) {
             return new CS50BlueDevice();
-        } else if (deviceName.equals("ciontek-a52_v0.32_20250912g")) {
+        } else if (deviceName.contains("ciontek-a52_v0.32") || deviceName.contains("ciontek-a52_v0.31") || deviceName.contains("ciontek-a52_v0.33")) {
             return new CS50BlackDevice();
         } else if(manufacturer.contains("cilico")) {
             return new CilicoDevice();
